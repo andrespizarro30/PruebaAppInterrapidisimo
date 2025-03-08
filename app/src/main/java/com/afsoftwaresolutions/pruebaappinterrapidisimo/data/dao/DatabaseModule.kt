@@ -20,12 +20,19 @@ object DatabaseModule {
             context,
             AppDatabase::class.java,
             "user_database"
-        ).build()
+        )
+        .fallbackToDestructiveMigration()
+        .build()
     }
 
     @Provides
     fun provideUserDao(database: AppDatabase): UserDao {
         return database.userDao()
+    }
+
+    @Provides
+    fun provideSchemaDao(database: AppDatabase): SchemasDao {
+        return database.schemaDao()
     }
 
 }

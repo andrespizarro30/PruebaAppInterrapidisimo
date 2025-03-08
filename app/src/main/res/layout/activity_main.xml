@@ -56,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:text="Login"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="@color/primaryDark"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
         app:layout_constraintStart_toStartOf="parent"

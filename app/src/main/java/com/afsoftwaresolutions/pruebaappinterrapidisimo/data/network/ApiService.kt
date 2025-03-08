@@ -1,7 +1,9 @@
 package com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network
 
+import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network.responses.LocalitiesResponse
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network.responses.LoginRequest
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network.responses.LoginResponse
+import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network.responses.SchemasResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
@@ -14,5 +16,11 @@ interface ApiService {
 
     @POST("/auth")
     suspend fun doLogin(@HeaderMap headers: Map<String, String>, @Body loginRequest: LoginRequest) : LoginResponse
+
+    @GET("/api/localities")
+    suspend fun getLocalities() : List<LocalitiesResponse>
+
+    @GET("/api/schema")
+    suspend fun getSchemas() : List<SchemasResponse>
 
 }
