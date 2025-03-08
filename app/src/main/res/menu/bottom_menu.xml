@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/localitiesFragment"
+        android:title="@string/localities"
+        android:icon="@drawable/localities"/>
+
+    <item
+        android:id="@+id/tablesFragment"
+        android:title="@string/tables"
+        android:icon="@drawable/table"/>
+
+</menu>

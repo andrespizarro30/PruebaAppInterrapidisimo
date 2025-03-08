@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray">#B0B0B0</color>
+    <color name="purple_500">#6200EE</color>
+
+    <color name="primaryDark">#121212</color>
+    <color name="secondary">#F57C00</color> <!-- Vibrant Orange for Energy -->
+    <color name="accent">#FFD700</color>
+
+</resources>
