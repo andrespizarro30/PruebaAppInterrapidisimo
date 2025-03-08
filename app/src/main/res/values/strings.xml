@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PruebaAppInterrapidisimo</string>
+
+    <string name="version_check_title">Chequeo de Versión</string>
+    <string name="version_check_ok">OK</string>
+    <string name="version_local_lower">La versión local (%1$d) es inferior a la del API (%2$d).</string>
+    <string name="version_local_higher">La versión local (%1$d) es superior a la del API (%2$d).</string>
+    <string name="version_local_equal">La versión local es igual a la del API.</string>
+
+    <string name="login_title">Login</string>
+
+    <string name="error_try_later">Ha ocurrido un error, intentelo mas tarde</string>
+
+    <string name="network_available">Red disponible</string>
+    <string name="network_unavailable">Red no disponible</string>
+
+    <string name="localities">Localidades</string>
+    <string name="tables">Tablas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
