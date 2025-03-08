@@ -55,12 +55,15 @@ class HomeActivity : AppCompatActivity() {
                         HomeStates.Loading -> loadingState()
                         is HomeStates.ErrorUserData -> errorDataUserState(it)
                         is HomeStates.SuccessUserData -> successDataUserState(it)
+                        else ->{}
                     }
                 }
             }
         }
 
         homeViewModel.doLoginOffLine(user,password)
+        homeViewModel.getLocalitiesData()
+        homeViewModel.getSchemasData()
 
         initNavigation()
     }

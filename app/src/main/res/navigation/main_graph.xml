@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/localitiesFragment"
-        android:name="com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.localities.LocalitiesFragment"
+        android:name="com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.home.localities.LocalitiesFragment"
         android:label="fragment_localities"
         tools:layout="@layout/fragment_localities" />
 
     <fragment
         android:id="@+id/tablesFragment"
-        android:name="com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.tables.TablesFragment"
+        android:name="com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.home.tables.TablesFragment"
         android:label="fragment_tables"
         tools:layout="@layout/fragment_tables" />
 

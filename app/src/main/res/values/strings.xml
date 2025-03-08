@@ -9,6 +9,8 @@
 
     <string name="login_title">Login</string>
 
+    <string name="fetch_error">Error en consulta</string>
+
     <string name="error_try_later">Ha ocurrido un error, intentelo mas tarde</string>
 
     <string name="network_available">Red disponible</string>
@@ -17,7 +19,5 @@
     <string name="localities">Localidades</string>
     <string name="tables">Tablas</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

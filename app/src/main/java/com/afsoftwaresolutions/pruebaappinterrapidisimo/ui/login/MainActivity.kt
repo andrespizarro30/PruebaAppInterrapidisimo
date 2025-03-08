@@ -15,6 +15,7 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.R
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.core.network.NetworkMonitor
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.databinding.ActivityMainBinding
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.LoginDataModel
+import com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.helpers.DialogHelper
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun errorAppVersionState(state: LoginStates.ErrorAppVersion){
         binding.pb.isVisible = false
-        showDialog(getString(R.string.version_check_title),state.error)
+        DialogHelper.showDialog(this,getString(R.string.version_check_title),state.error)
     }
 
     private fun successAppVersionState(state: LoginStates.SuccessAppVersion){
@@ -140,14 +141,12 @@ class MainActivity : AppCompatActivity() {
             localVersion > remoteVersion -> getString(R.string.version_local_higher, localVersion, remoteVersion)
             else -> getString(R.string.version_local_equal)
         }
-
-        showDialog(getString(R.string.version_check_title),message)
-
+        DialogHelper.showDialog(this,getString(R.string.version_check_title),message)
     }
 
     private fun errorLoginState(state: LoginStates.ErrorLogin){
         binding.pb.isVisible = false
-        showDialog(getString(R.string.login_title),state.error)
+        DialogHelper.showDialog(this,getString(R.string.login_title),state.error)
     }
 
     private fun successLoginState(state: LoginStates.SuccessLogin){
@@ -160,14 +159,6 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
 
-    }
-
-    private fun showDialog(dialogTitle: String,message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(dialogTitle)
-            .setMessage(message)
-            .setPositiveButton(getString(R.string.version_check_ok)) { dialog, _ -> dialog.dismiss() }
-            .show()
     }
 
 }
