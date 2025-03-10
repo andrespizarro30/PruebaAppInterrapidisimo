@@ -16,6 +16,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * ViewModel responsable del proceso de autenticación y gestión de la versión de la aplicación.
+ * Permite iniciar sesión tanto en línea como fuera de línea y obtener la versión de la app.
+ *
+ * @property getAppVersionUC Caso de uso para obtener la versión de la aplicación.
+ * @property doLoginUC Caso de uso para realizar el inicio de sesión en línea.
+ * @property userDao DAO (Data Access Object) para gestionar la información del usuario en la base de datos local.
+ * @property networkMonitor Monitor de red para verificar la conectividad.
+ */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val getAppVersionUC: GetAppVersionUC,
@@ -24,26 +33,59 @@ class LoginViewModel @Inject constructor(
     private val networkMonitor: NetworkMonitor
 ) : ViewModel() {
 
+    /**
+     * Estado actual de la versión de la aplicación.
+     */
     private var _stateAppVersion = MutableStateFlow<LoginStates>(LoginStates.Loading)
+
+    /**
+     * Exposición del estado de la versión de la aplicación como un flujo inmutable.
+     */
     var stateAppVersion: StateFlow<LoginStates> = _stateAppVersion
 
+    /**
+     * Estado actual del proceso de inicio de sesión.
+     */
     private var _stateLoginProcess = MutableStateFlow<LoginStates>(LoginStates.Loading)
+
+    /**
+     * Exposición del estado del proceso de inicio de sesión como un flujo inmutable.
+     */
     var stateLoginProcess: StateFlow<LoginStates> = _stateLoginProcess
 
+    /**
+     * LiveData que expone el estado de la conexión de red.
+     */
     val isConnected: LiveData<Boolean> = networkMonitor.isConnected
 
+    /**
+     * Obtiene la versión de la aplicación y actualiza el estado correspondiente.
+     */
+
     fun getAppVersion(){
+
         viewModelScope.launch {
             _stateAppVersion.value = LoginStates.Loading
             val result = withContext(Dispatchers.IO){getAppVersionUC()}
-            if(result!=null){
-                _stateAppVersion.value = LoginStates.SuccessAppVersion(result)
-            }else{
-                _stateAppVersion.value = LoginStates.ErrorAppVersion("Ha ocurrido un error, intentelo mas tarde")
+            when (result) {
+                is LoginStates.SuccessAppVersion -> {
+                    _stateAppVersion.value = result
+                }
+                is LoginStates.ErrorAppVersion -> {
+                    _stateAppVersion.value = result
+                }
+                else -> {}
             }
         }
     }
 
+    /**
+     * Realiza el inicio de sesión en línea utilizando las credenciales proporcionadas.
+     * Si el inicio de sesión es exitoso, guarda los datos del usuario en la base de datos local.
+     *
+     * @param headers Encabezados necesarios para la autenticación en el servidor.
+     * @param loginDataModel Modelo que contiene las credenciales del usuario.
+     */
     fun doLogin(headers: Map<String, String>, loginDataModel: LoginDataModel){
         viewModelScope.launch {
 
@@ -69,6 +111,11 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Realiza el inicio de sesión en modo offline verificando las credenciales almacenadas en la base de datos local.
+     *
+     * @param loginDataModel Modelo que contiene las credenciales del usuario.
+     */
     fun doLoginOffLine(loginDataModel: LoginDataModel){
         viewModelScope.launch {
 
@@ -83,6 +130,11 @@ class LoginViewModel @Inject constructor(
             }
 
         }
+    }
+
+    fun setNormalState(){
+        _stateAppVersion.value = LoginStates.NormalSate
+        _stateLoginProcess.value = LoginStates.NormalSate
     }
 
     override fun onCleared() {

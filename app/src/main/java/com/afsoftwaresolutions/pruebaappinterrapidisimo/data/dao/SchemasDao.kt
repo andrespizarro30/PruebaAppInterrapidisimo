@@ -13,10 +13,8 @@ interface SchemasDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSchema(schemasDataModel: SchemasDataModel)
 
-    @Query("SELECT * FROM schema_data WHERE TableName = :tableName LIMIT 1")
-    suspend fun getSchemaByTable(tableName: String): SchemasDataModel?
+    @Query("SELECT * FROM schema_data")
+    suspend fun getSchemas(): List<SchemasDataModel>?
 
-    @Query("DELETE FROM schema_data")
-    suspend fun deleteAllSchemas()
 
 }

@@ -15,7 +15,4 @@ interface UserDao {
     @Query("SELECT * FROM user_data WHERE user = :user AND password = :password LIMIT 1")
     suspend fun getUserByUserAndPassword(user: String, password: String): UserDataModel?
 
-    @Query("DELETE FROM user_data")
-    suspend fun deleteAllUsers()
-
 }

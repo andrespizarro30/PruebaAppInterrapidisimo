@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LocalitiesResponse (
 
-    @SerializedName("IdLocalidad") var IdLocalidad: String? = null,
+    @SerializedName("IdLocalidad") var IdLocalidad: String,
     @SerializedName("IdTipoLocalidad") var IdTipoLocalidad: String? = null,
     @SerializedName("IdAncestroPGrado") var IdAncestroPGrado: String? = null,
     @SerializedName("IdAncestroSGrado") var IdAncestroSGrado: String? = null,
@@ -34,11 +34,12 @@ data class LocalitiesResponse (
     @SerializedName("PermitePreEnviosPunto") var PermitePreEnviosPunto: Boolean? = null,
     @SerializedName("EtiquetaEntrega") var EtiquetaEntrega: Boolean? = null,
     @SerializedName("HoraMinRecogida") var HoraMinRecogida: Int? = null,
-    @SerializedName("AbreviacionCiudad") var AbreviacionCiudad: String? = null
+    @SerializedName("AbreviacionCiudad") var AbreviacionCiudad: String? = null,
 
 ){
     fun toDomain(): LocalitiesDataModel {
         return LocalitiesDataModel(
+            IdLocalidad = IdLocalidad,
             Nombre = Nombre,
             AbreviacionCiudad = AbreviacionCiudad
         )

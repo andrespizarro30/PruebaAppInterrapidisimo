@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#0A0A1A</color> <!-- Slightly lighter to avoid pure black background -->
+    <color name="white">#D6D6D6</color> <!-- Soft white for better readability -->
+
+    <color name="gray_light">#7A7A85</color> <!-- Darker for a more balanced contrast -->
+    <color name="gray_medium">#666672</color>
+    <color name="gray_dark">#3A3A42</color> <!-- Darker for better distinction -->
+
+    <color name="primaryDark">#0D2A3A</color> <!-- Deeper navy blue for a premium dark feel -->
+    <color name="secondary">#6A0DAD</color> <!-- Brightened for better visibility -->
+</resources>

@@ -19,9 +19,10 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "user_database"
+            "inter_database"
         )
         .fallbackToDestructiveMigration()
+        .allowMainThreadQueries()
         .build()
     }
 
@@ -33,6 +34,11 @@ object DatabaseModule {
     @Provides
     fun provideSchemaDao(database: AppDatabase): SchemasDao {
         return database.schemaDao()
+    }
+
+    @Provides
+    fun provideLocalitiesDao(database: AppDatabase): LocalitiesDao {
+        return database.localitiesDao()
     }
 
 }
