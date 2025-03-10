@@ -1,6 +1,7 @@
 package com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.login
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.core.network.NetworkMonitor
@@ -57,6 +58,9 @@ class LoginViewModel @Inject constructor(
      * LiveData que expone el estado de la conexión de red.
      */
     val isConnected: LiveData<Boolean> = networkMonitor.isConnected
+
+    private var _isPasswordVisible = MutableLiveData<Boolean>(false)
+    val isPasswordVisible: LiveData<Boolean> = _isPasswordVisible
 
     /**
      * Obtiene la versión de la aplicación y actualiza el estado correspondiente.
@@ -135,6 +139,10 @@ class LoginViewModel @Inject constructor(
     fun setNormalState(){
         _stateAppVersion.value = LoginStates.NormalSate
         _stateLoginProcess.value = LoginStates.NormalSate
+    }
+
+    fun visibleEditTextPassword(){
+        _isPasswordVisible.value = !_isPasswordVisible.value!!
     }
 
     override fun onCleared() {
