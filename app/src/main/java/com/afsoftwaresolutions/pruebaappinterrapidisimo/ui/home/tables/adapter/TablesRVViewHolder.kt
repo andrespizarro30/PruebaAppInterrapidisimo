@@ -13,7 +13,7 @@ class TablesRVViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = TablesItemListBinding.bind(view)
 
-    fun render(schemaData: SchemasDataModel, posit : Int){
+    fun render(schemaData: SchemasDataModel){
         val context = binding.tvTableName
 
         binding.tvTableName.text = schemaData.TableName

@@ -27,7 +27,7 @@ class TablesRVAdapter (
     }
 
     override fun onBindViewHolder(holder: TablesRVViewHolder, position: Int) {
-        holder.render(schemasList[position],position);
+        holder.render(schemasList[position]);
     }
 
 
