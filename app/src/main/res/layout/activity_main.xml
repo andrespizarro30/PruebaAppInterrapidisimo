@@ -11,12 +11,13 @@
         android:id="@+id/imgLogo"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/interrap_logo"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/interrap_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:text="cGFtLm1lcmVkeTIx\n"

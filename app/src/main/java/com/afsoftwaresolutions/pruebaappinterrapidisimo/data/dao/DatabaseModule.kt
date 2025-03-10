@@ -22,7 +22,6 @@ object DatabaseModule {
             "inter_database"
         )
         .fallbackToDestructiveMigration()
-        .allowMainThreadQueries()
         .build()
     }
 
