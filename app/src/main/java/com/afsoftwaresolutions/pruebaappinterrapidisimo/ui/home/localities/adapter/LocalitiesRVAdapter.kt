@@ -27,7 +27,7 @@ class LocalitiesRVAdapter (
     }
 
     override fun onBindViewHolder(holder: LocalitiesRVViewHolder, position: Int) {
-        holder.render(localitiesList[position],position);
+        holder.render(localitiesList[position]);
     }
 
 

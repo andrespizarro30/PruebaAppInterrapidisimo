@@ -14,7 +14,7 @@ class LocalitiesRVViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = LocalitiesItemListBinding.bind(view)
 
-    fun render(localitiesData: LocalitiesDataModel, posit : Int){
+    fun render(localitiesData: LocalitiesDataModel){
         val context = binding.tvNombreCiudad.context
 
         binding.tvAbreviacionCiudad.text = localitiesData.AbreviacionCiudad
