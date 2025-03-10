@@ -7,6 +7,7 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.data.network.responses.S
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
@@ -21,6 +22,7 @@ interface ApiService {
     suspend fun getLocalities() : List<LocalitiesResponse>
 
     @GET("/api/schema")
+    @Headers("usuario: Controller")
     suspend fun getSchemas() : List<SchemasResponse>
 
 }

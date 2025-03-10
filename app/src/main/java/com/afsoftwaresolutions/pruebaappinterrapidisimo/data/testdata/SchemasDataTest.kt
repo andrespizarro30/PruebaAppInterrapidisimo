@@ -19,8 +19,8 @@ object SchemasDataTest {
         "Announcements", "Reports", "Settings"
     )
 
-    fun getSchemasData() : List<SchemasResponse>{
+    /*fun getSchemasData() : List<SchemasResponse>{
         val schemaDataList = tableNames.map { SchemasResponse(it) }
         return schemaDataList
-    }
+    }*/
 }

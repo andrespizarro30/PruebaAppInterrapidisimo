@@ -6,7 +6,7 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.login.LoginStates
 
 interface RepositoryService {
 
-    suspend fun getAppVersion() : Int?
+    suspend fun getAppVersion() : LoginStates?
 
     suspend fun doLogin(headers: Map<String, String>,loginDataModel: LoginDataModel) : LoginStates?
 

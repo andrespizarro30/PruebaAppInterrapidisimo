@@ -13,26 +13,22 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.login.LoginStates
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class RepositoryServiceImp@Inject constructor(private val apiService: ApiService):RepositoryService {
+/**
+ * Implementación del servicio de repositorio que maneja la comunicación con la API.
+ *
+ * @property apiService Servicio de API utilizado para realizar las solicitudes de red.
+ */
+class RepositoryServiceImp @Inject constructor(private val apiService: ApiService) : RepositoryService {
 
-    override suspend fun getAppVersion(): Int? {
-        val response = runCatching {apiService.getAppVersion()}
-            .onSuccess {
-                val appVersion : Int = it
-                return appVersion
-            }
-            .onFailure { Log.i("AF SOFT", "Ocurrio un error ${it.message}") }
-
-        return null
-    }
-
-    override suspend fun doLogin(headers: Map<String, String>,loginDataModel: LoginDataModel): LoginStates? {
-        val response = runCatching {apiService.doLogin(headers,loginDataModel.toResponse())}
-            .onSuccess {
-                val loginResponse : LoginResponse = it
-                return LoginStates.SuccessLogin(loginResponse.toDomain())
-            }
-            .onFailure {
+    /**
+     * Obtiene la versión actual de la aplicación desde el servidor.
+     *
+     * @return La versión de la aplicación si la solicitud es exitosa, `null` en caso de error.
+     */
+    override suspend fun getAppVersion(): LoginStates? {
+        return runCatching { apiService.getAppVersion() }
+            .map { LoginStates.SuccessAppVersion(it) }
+            .getOrElse {
                 val errorMessage = when (it) {
                     is HttpException -> {
                         val statusCode = it.code()
@@ -43,61 +39,79 @@ class RepositoryServiceImp@Inject constructor(private val apiService: ApiService
                         "Unexpected error: ${it.message}"
                     }
                 }
-
-                return LoginStates.ErrorLogin(errorMessage)
+                LoginStates.ErrorAppVersion(errorMessage)
             }
-
-        return null
     }
 
+    /**
+     * Realiza el inicio de sesión del usuario enviando los datos a la API.
+     *
+     * @param headers Encabezados HTTP requeridos para la solicitud.
+     * @param loginDataModel Datos del usuario para autenticación.
+     * @return Un estado de login exitoso o con error, `null` en caso de fallo inesperado.
+     */
+    override suspend fun doLogin(headers: Map<String, String>, loginDataModel: LoginDataModel): LoginStates? {
+        return runCatching { apiService.doLogin(headers, loginDataModel.toResponse()) }
+            .map { LoginStates.SuccessLogin(it.toDomain()) }
+            .getOrElse {
+                val errorMessage = when (it) {
+                    is HttpException -> {
+                        val statusCode = it.code()
+                        val errorBody = it.response()?.errorBody()?.string()
+                        "HTTP $statusCode Error: ${errorBody ?: "Error desconocido"}"
+                    }
+                    else -> {
+                        "Error inesperado: ${it.message}"
+                    }
+                }
+                LoginStates.ErrorLogin(errorMessage)
+            }
+    }
+
+    /**
+     * Obtiene la lista de localidades desde la API.
+     *
+     * @return Un estado con la lista de localidades si la solicitud es exitosa, o un estado de error en caso contrario.
+     */
     override suspend fun getLocalities(): HomeStates? {
-        val response = runCatching {apiService.getLocalities()}
-            .onSuccess {
-                val localities : List<LocalitiesResponse> = it
-                return HomeStates.SuccessLocalitiesData(localities.map{ it.toDomain() })
-            }
-            .onFailure {
+        return runCatching { apiService.getLocalities() }
+            .map { localities -> HomeStates.SuccessLocalitiesData(localities.map { it.toDomain() }) }
+            .getOrElse {
                 val errorMessage = when (it) {
                     is HttpException -> {
                         val statusCode = it.code()
                         val errorBody = it.response()?.errorBody()?.string()
-                        "HTTP $statusCode Error: ${errorBody ?: "Unknown error"}"
+                        "HTTP $statusCode Error: ${errorBody ?: "Error desconocido"}"
                     }
                     else -> {
-                        "Unexpected error: ${it.message}"
+                        "Error inesperado: ${it.message}"
                     }
                 }
-
-                return HomeStates.ErrorLocalitiesData(errorMessage)
+                HomeStates.ErrorLocalitiesData(errorMessage)
             }
-
-        return null
     }
 
+    /**
+     * Obtiene la lista de esquemas desde la API o desde datos de prueba.
+     *
+     * @return Un estado con la lista de esquemas si la solicitud es exitosa, o un estado de error en caso contrario.
+     */
     override suspend fun getSchemas(): HomeStates? {
-        //val response = runCatching {apiService.getSchemas()}
-        val response = runCatching {SchemasDataTest.getSchemasData()}
-            .onSuccess {
-                val schemas : List<SchemasResponse> = it
-                return HomeStates.SuccessSchemasData(schemas.map{ it.toDomain() })
-            }
-            .onFailure {
+        return runCatching { apiService.getSchemas() }
+        //return runCatching { SchemasDataTest.getSchemasData() } //En caso de entrevista quisiera explicar este punto y porque no lo elimino
+            .map { schemas -> HomeStates.SuccessSchemasData(schemas.map { it.toDomain() }) }
+            .getOrElse {
                 val errorMessage = when (it) {
                     is HttpException -> {
                         val statusCode = it.code()
                         val errorBody = it.response()?.errorBody()?.string()
-                        "HTTP $statusCode Error: ${errorBody ?: "Unknown error"}"
+                        "HTTP $statusCode Error: ${errorBody ?: "Error desconocido"}"
                     }
                     else -> {
-                        "Unexpected error: ${it.message}"
+                        "Error inesperado: ${it.message}"
                     }
                 }
-
-                return HomeStates.ErrorSchemasData(errorMessage)
+                HomeStates.ErrorSchemasData(errorMessage)
             }
-
-        return null
     }
-
-
 }

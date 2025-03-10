@@ -79,7 +79,28 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    //Unit testing
+    // JUnit
+    testImplementation("junit:junit:4.13.2")
+
+    // Mockito for mocking dependencies
+    testImplementation("org.mockito:mockito-core:5.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.0")
+
+    // Coroutines Test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+
+    // Mockk (alternative to Mockito, if preferred)
+    testImplementation("io.mockk:mockk:1.13.5")
+
+    // AndroidX Core Testing for LiveData and StateFlow testing
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
