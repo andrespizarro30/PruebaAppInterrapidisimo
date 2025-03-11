@@ -1,31 +1,71 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:id="@+id/parent"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="6dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
     app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tvTableName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tool:text="TABLE 1"
+            android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/secondary"
-            android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvPrimaryKey" />
 
+        <TextView
+            android:id="@+id/tvPrimaryKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/primaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTableName"
+            android:text="PK: ID"/>
+
+        <TextView
+            android:id="@+id/tvNumeroCampos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/primaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPrimaryKey"
+            android:text="Fields: 0"/>
+
+        <TextView
+            android:id="@+id/tvFechaActualizacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/primaryDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNumeroCampos"
+            android:text="Updated: YYYY-MM-DD" />
+
+        <ImageView
+            android:id="@+id/iconTable"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_table"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTableName"
+            app:layout_constraintBottom_toBottomOf="@id/tvTableName"
+            android:contentDescription="Table Icon"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

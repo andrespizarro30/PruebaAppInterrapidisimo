@@ -16,7 +16,10 @@ data class SchemasResponse(
 ){
     fun toDomain():SchemasDataModel{
         return SchemasDataModel(
-            TableName = nombreTabla
+            TableName = nombreTabla,
+            pk = pk,
+            numeroCampos = numeroCampos,
+            fechaActualizacionSincro = fechaActualizacionSincro
         )
     }
 }
