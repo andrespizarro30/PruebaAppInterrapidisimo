@@ -6,7 +6,7 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.LocalitiesD
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.SchemasDataModel
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.UserDataModel
 
-@Database(entities = [UserDataModel::class, SchemasDataModel::class, LocalitiesDataModel::class], version = 3)
+@Database(entities = [UserDataModel::class, SchemasDataModel::class, LocalitiesDataModel::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun schemaDao(): SchemasDao

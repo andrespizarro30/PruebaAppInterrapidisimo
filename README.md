@@ -17,7 +17,7 @@
 This project is built using **Kotlin** and follows **modern Android development practices**. Below are the key build configurations.
 
 ### **Requirements**
-- **Minimum SDK**: 24
+- **Minimum SDK**: 26
 - **Target SDK**: 35
 - **Compile SDK**: 35
 - **Java Version**: 11

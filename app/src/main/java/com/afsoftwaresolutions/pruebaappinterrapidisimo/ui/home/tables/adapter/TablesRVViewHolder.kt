@@ -8,6 +8,7 @@ import com.afsoftwaresolutions.pruebaappinterrapidisimo.databinding.LocalitiesIt
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.databinding.TablesItemListBinding
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.LocalitiesDataModel
 import com.afsoftwaresolutions.pruebaappinterrapidisimo.domain.model.SchemasDataModel
+import com.afsoftwaresolutions.pruebaappinterrapidisimo.ui.helpers.DateFormater
 
 class TablesRVViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -17,6 +18,18 @@ class TablesRVViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val context = binding.tvTableName
 
         binding.tvTableName.text = schemaData.TableName
+        binding.tvPrimaryKey.text = buildString {
+            append("PK: ")
+            append(schemaData.pk)
+        }
+        binding.tvNumeroCampos.text = buildString {
+            append("Fields: ")
+            append(schemaData.numeroCampos.toString())
+        }
+        binding.tvFechaActualizacion.text = buildString {
+            append("Updated: ")
+            append(DateFormater.formatToYYYYMMSS_HHMMSS(schemaData.fechaActualizacionSincro))
+        }
 
         binding.parent.setOnClickListener {
             startRotationAnimation(binding.parent)
